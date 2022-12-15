@@ -8,7 +8,7 @@ import './topnav.css';
 import logo from '../logo.png'; 
 function TopNav() {
   return (
-    <Navbar className='color-nav'>
+    <Navbar className='color-nav' data-toggle="collapse">
       <Container>
       <img className='logo'src={logo} />
         <Navbar.Brand href="#home">Ticketaty</Navbar.Brand>

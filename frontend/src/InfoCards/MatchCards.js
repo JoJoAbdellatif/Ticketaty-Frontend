@@ -2,20 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
 import { useState } from "react";
 import cn from "classnames";
+import Button from 'react-bootstrap/Button';
 
-function FlipCard() {
-    const card = {  
-        
-            id: "63976f75d4aadd7d875e8ec9",
-            matchNumber: 1,
-            roundNumber: 1,
-            dateUtc: "2022-11-20T16:00:00Z",
-            location: "Al Bayt Stadium",
-        
-            homeTeam: "Qatar",
-            awayTeam: "Ecuador",
-            group: "A",
-    }
+function FlipCard({card}) {
+   
 
   const [showBack, setShowBack] = useState(false); 
 
@@ -50,9 +40,9 @@ function FlipCard() {
            {card.location}</h5>
         <h5 className="card-title">
            {card.group}</h5>
-        
-           
-        
+        <div>
+      <Button variant="primary">Primary</Button>
+      </div>
         </div>
       </div>
     </div>

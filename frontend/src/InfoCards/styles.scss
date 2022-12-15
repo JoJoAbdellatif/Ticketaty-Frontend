@@ -2,15 +2,19 @@
 
 
 
+
 .container {
   height: 100vh;
+  width: 100vw;
+  
 }
 
 .flip-card-outer {
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 200px;
   margin: 25px 0;
-  padding-left: 20px;
+ 
+  
 
 
 
@@ -24,7 +28,9 @@
   
 
     &.showBack {
+
       transform: rotateY(180deg);
+
     }
   
     .card {
@@ -39,12 +45,17 @@
         transform: rotateY(0);
         background-color: #2d2d2d;
         color: #fff;
+        border-radius: 30px;
+
       }
   
       &.back {
         transform: rotateY(180deg);
         background-color: #FD841F;
         color: #2d2d2d;
+        border-radius: 30px;
+   
+
       }
       
     }
