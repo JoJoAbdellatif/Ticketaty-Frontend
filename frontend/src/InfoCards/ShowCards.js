@@ -144,7 +144,7 @@ const cards = [
 
 export default function ShowCards() {
     return (
-      <div className="container">
+      <div className="">
        
       
             {cards.map((card) => (

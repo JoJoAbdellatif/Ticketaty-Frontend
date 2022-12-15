@@ -9,3 +9,12 @@
     margin-right: 10px;
     margin-left: 10px;
 }
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #E14D2A;
+    bottom: 0;
+    left: 0;
+    margin-top: "-100%";
+    width: 100%;
+  }
