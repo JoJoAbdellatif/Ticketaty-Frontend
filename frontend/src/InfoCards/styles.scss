@@ -148,14 +148,60 @@ color: rgba(255, 255, 255, 0.8);
     position: absolute;
 width: 100px;
 height: 75px;
-left: 179px; 
+left: 12%; 
 margin-top: 30px;
   }
   .Awayimage{
     position: absolute;
 width: 100px;
 height: 75px;
-right: 179px; 
+right: 12%;  
+margin-top: 30px;
+  }
+  .Hometitle{
+    position: absolute;
+    left: 13%;  
+    margin-top: 110px;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    
+    /* identical to box height */
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+  .Awaytitle{
+    position: absolute;
+    right: 13%; 
+    margin-top: 110px;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    
+    /* identical to box height */
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+  .loc{
+    position: absolute;
+    right: 5%;  
+
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    
+    /* identical to box height */
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+  .buttonplacement{
+
 
   }
 }

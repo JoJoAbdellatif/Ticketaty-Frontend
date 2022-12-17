@@ -33,9 +33,15 @@ function FlipCard({card}) {
         <div className="card front">    
         <div className="card-body">
         <img className='Homeimage'src={card.homeimage} ></img>
-                <h5 className="title">{card.homeTeam} vs {card.awayTeam}</h5>
+                <h5 className="Hometitle">{card.homeTeam}</h5>
+               
                 <img className='Awayimage'src={card.awayimage} ></img>
-            <div></div>
+                <h5 className="Awaytitle">{card.awayTeam}</h5>
+                <Button className='booknowbutton'variant="primary"  >Book Now!</Button>
+               
+            <div>
+            Flip To See More
+            </div>
             </div>
        
         </div>
@@ -55,10 +61,10 @@ function FlipCard({card}) {
 
      
         </div >
-        <div className="card-body d-flex justify-content-right align-items-center" >
-        {/* <h5 className="card-title">  {card.location}</h5> */}
+        <div className="loc" >
+        <h5 className="card-title">  Location: {card.location}</h5>
         </div>
-        <div >
+        <div className="buttonplacement">
         <Button className='booknowbutton'variant="primary"  >
       
       Book Now!</Button>
