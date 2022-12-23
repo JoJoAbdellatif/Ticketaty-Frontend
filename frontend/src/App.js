@@ -6,7 +6,7 @@ import Footer from './EssentialComponents/Footer/Footer';
 import BookNow from './Components/bookNow/bookNow';
 import MainCarousel from './EssentialComponents/Carousel/carousel';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Search from './search/Search'
+import Search from './Components/search/Search'
 
 function App() {
   return (
