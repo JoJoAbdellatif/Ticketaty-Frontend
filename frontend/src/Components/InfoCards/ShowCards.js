@@ -2,6 +2,7 @@ import FlipCard from "./MatchCards";
 import Paginate from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
+import {motion} from 'framer-motion'
 
 const cards = [
  {
@@ -128,13 +129,16 @@ const cards = [
 export default function ShowCards() {
     return (
         
-      <div className="">
+      <motion.div className=""
+      initial={{width:0}}
+      animate={{width:'100%',transition:{duration:'0.2'}}}
+      exit={{x:'100%'}}>
       <div></div> 
       
             {cards.map((card) => (
               <FlipCard key={card.id} card={card} />
             ))}
           <Paginate/>
-      </div>
+      </motion.div>
     );
   }

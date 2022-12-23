@@ -1,9 +1,12 @@
 
 import "./booknow.scss";
-import React, { useState } from "react";
+import React, { render,useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Button from 'react-bootstrap/Button';
+
 import {motion} from 'framer-motion'
+import { renderMatches } from "react-router-dom";
 
 
 const match ={
@@ -43,6 +46,7 @@ export default function BookNow() {
     let [quan3, setQuan3] = useState(0);
     let [Order, setOrder] = useState([]);
     let [Total, setTotal] = useState(0);
+    let [show, setShow] = useState(true);
 
   function incrementCount(count, setCount,cat) {
     if(count>=2){
@@ -70,8 +74,8 @@ export default function BookNow() {
     }
     if(cat===2){
         if(quan1 !== 0 && quan3 !== 0){
-            alert('Sorry, you can only buy from two categories at a time ')
-            return
+         alert('Sorry, you can only buy from two categories at a time ')
+         return
         }
         if(match.availability.category2.pending-count<=0){
             alert('Sorry, Tickets Sold Out ')
