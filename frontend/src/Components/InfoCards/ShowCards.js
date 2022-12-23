@@ -1,5 +1,5 @@
 import FlipCard from "./MatchCards";
-
+import Paginate from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
 
@@ -134,7 +134,7 @@ export default function ShowCards() {
             {cards.map((card) => (
               <FlipCard key={card.id} card={card} />
             ))}
-          
+          <Paginate/>
       </div>
     );
   }

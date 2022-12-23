@@ -1,8 +1,8 @@
 import '../Nav/topnav.css';
 import Carousel from 'react-bootstrap/Carousel';
-import Caro1 from './caro1.jpg';
-import Caro2 from './caro2.jpg'
-import Caro3 from './caro3.jpg'
+import Caro3 from './caro1.jpg';
+import Caro1 from './caro2.jpg'
+import Caro2 from './caro3.jpg'
 function MainCarousel() {
  return(
     <div className='carousel'>
