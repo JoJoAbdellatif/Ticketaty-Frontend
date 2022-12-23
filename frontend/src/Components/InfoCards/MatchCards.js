@@ -41,7 +41,7 @@ function FlipCard({card}) {
             <div className="textFront">
             Flip To See More
             </div>
-                <Button className='booknowbutton'variant="primary"  >Book Now!</Button>
+                <Button className='booknowbutton'variant="primary" href={"/match/1"} >Book Now!</Button>
      
             </div>
        
@@ -66,7 +66,7 @@ function FlipCard({card}) {
         <h5 className="card-title">  Location: {card.location}</h5>
         </div>
         <div >
-        <Button className='booknowback'variant="primary"  >
+        <Button className='booknowback'variant="primary" href="/match/1" >
       
       Book Now!</Button>
       </div>

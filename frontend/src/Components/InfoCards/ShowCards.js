@@ -129,7 +129,7 @@ export default function ShowCards() {
     return (
         
       <div className="">
-       
+      <div></div> 
       
             {cards.map((card) => (
               <FlipCard key={card.id} card={card} />

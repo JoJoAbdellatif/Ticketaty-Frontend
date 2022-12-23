@@ -1,4 +1,4 @@
-import './topnav.css';
+import '../Nav/topnav.css';
 
 
 function Footer(){

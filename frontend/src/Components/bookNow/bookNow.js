@@ -169,9 +169,9 @@ export default function BookNow() {
            Price: {match.availability.category1.price}<br/>
            Pending: {match.availability.category1.pending}<br/>
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>incrementCount(quan1,setQuan1,1)}>+</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan1,setQuan1,1)}>-</Button>
                <div className="quantity">{quan1}</div>
-      <Button className='addQuantity'onClick={e=>decrementCount(quan1,setQuan1,1)}>-</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan1,setQuan1,1)}>+</Button>
       </div>
          </div>
          <div className="category2">
@@ -180,9 +180,9 @@ export default function BookNow() {
             Price:{match.availability.category2.price}<br/>
            Pending: {match.availability.category2.pending}
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>incrementCount(quan2,setQuan2,2)}>+</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan2,setQuan2,2)}>-</Button>
                <div className="quantity">{quan2}</div>
-      <Button className='addQuantity'onClick={e=>decrementCount(quan2,setQuan2,2)}>-</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan2,setQuan2,2)}>+</Button>
       </div>
          </div>
          <div className="category3">
@@ -191,9 +191,9 @@ export default function BookNow() {
             Price:{match.availability.category3.price}<br/>
            Pending: {match.availability.category3.pending}
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>incrementCount(quan3,setQuan3,3)}>+</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan3,setQuan3,3)}>-</Button>
                <div className="quantity">{quan3}</div>
-      <Button className='addQuantity'onClick={e=>decrementCount(quan3,setQuan3,3)}>-</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan3,setQuan3,3)}>+</Button>
       </div>
          </div>
           
