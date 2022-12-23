@@ -3,6 +3,9 @@ import "./booknow.scss";
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
+import {motion} from 'framer-motion'
+
+
 const match ={
     
         "_id": "639c7980d4aadd7d87861826",
@@ -127,7 +130,12 @@ export default function BookNow() {
   let date = match.dateUtc.split('T')[0]    
     return (
         
-      <div className="Main">
+      <motion.div className="Main"
+      initial={{width:0}}
+      animate={{width:'96%',transition:{duration:'0.2'}}}
+      exit={{x:'96%'}}
+      
+      >
        <div className="TicketInfo">
          <div className='Title'><h1>Ticket Info</h1></div>
          <div className="DateLoc">
@@ -197,6 +205,6 @@ export default function BookNow() {
       </div>
          </div>
           
-      </div>
+      </motion.div>
     );
   }

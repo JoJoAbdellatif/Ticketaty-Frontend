@@ -2,7 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { useState } from "react";
-import { ReactSearchAutocomplete } from 'react-saerch-autocomplete'
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import ShowCards from "../InfoCards/ShowCards";
 import './search.css'
 export default function Search() {
