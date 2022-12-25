@@ -4,6 +4,7 @@ import React, { render,useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Button from 'react-bootstrap/Button';
+import ReCAPTCHA from "react-google-recaptcha";
 
 import {motion} from 'framer-motion'
 import { renderMatches } from "react-router-dom";
@@ -46,7 +47,9 @@ export default function BookNow() {
     let [quan3, setQuan3] = useState(0);
     let [Order, setOrder] = useState([]);
     let [Total, setTotal] = useState(0);
-    let [show, setShow] = useState(true);
+    let [CapVerified, setCapVerified] = useState(false);
+
+    
 
   function incrementCount(count, setCount,cat) {
     if(count>=2){
@@ -132,6 +135,10 @@ export default function BookNow() {
     }
   }
   let date = match.dateUtc.split('T')[0]    
+  
+  function onChange(){
+    setCapVerified(true)
+  }
     return (
         
       <motion.div className="Main"
@@ -172,7 +179,12 @@ export default function BookNow() {
       </ol>
       Total = {Total}
       <div className="Pay">
-        <Button className="PayButton">Pay</Button>
+        <ReCAPTCHA className="Recaptcha"
+       sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+         onChange={e=>onChange()} 
+
+        />
+        <Button  className="PayButton" disabled = {!CapVerified}>Pay</Button>
       </div>
        </div>
          <div className="category1">

@@ -12,7 +12,7 @@ function TopNav() {
     <Navbar className='color-nav' data-toggle="collapse">
       <Container>
       <img className='logo'src={logo} />
-        <Navbar.Brand href="#home">Ticketaty</Navbar.Brand>
+        <Navbar.Brand href="/">Ticketaty</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
