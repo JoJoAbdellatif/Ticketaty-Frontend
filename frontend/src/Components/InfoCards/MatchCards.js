@@ -32,16 +32,16 @@ function FlipCard({card}) {
       >
         <div className="card front">    
         <div className="card-body">
-        <img className='Homeimage'src={card.homeimage} ></img>
+        <img className='Homeimage'src={card.homeTeamFlag} ></img>
                 <h5 className="Hometitle">{card.homeTeam}</h5>
                
-                <img className='Awayimage'src={card.awayimage} ></img>
+                <img className='Awayimage'src={card.awayTeamFlag} ></img>
                 <h5 className="Awaytitle">{card.awayTeam}</h5>
               <div className="vs">VS</div>            
             <div className="textFront">
             Flip To See More
             </div>
-                <Button className='booknowbutton'variant="primary" href={"/match/1"} >Book Now!</Button>
+                <Button className='booknowbutton'variant="primary" href={`/match/${card._id}`} >Book Now!</Button>
      
             </div>
        
@@ -66,7 +66,7 @@ function FlipCard({card}) {
         <h5 className="card-title">  Location: {card.location}</h5>
         </div>
         <div >
-        <Button className='booknowback'variant="primary" href="/match/1" >
+        <Button className='booknowback'variant="primary" href={"/match/"+card._id} >
       
       Book Now!</Button>
       </div>
