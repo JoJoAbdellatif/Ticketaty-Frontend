@@ -10,7 +10,8 @@ const useFetch = (url) => {
 
     useEffect(() => {
         isRendered = true;
-        axios.get(url)
+        setTimeout(() => {
+            axios.get(url)
             .then(res => {
                 if (isRendered) {
                     setData(Object.assign(res.data))
@@ -19,7 +20,8 @@ const useFetch = (url) => {
                 return null;
 
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))   
+            }, 3000);;
         return () => {
             isRendered = false;
         };

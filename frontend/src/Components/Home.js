@@ -2,6 +2,7 @@ import React from 'react';
 import MainCarousel from '../EssentialComponents/Carousel/carousel';
 import ShowCards from './InfoCards/ShowCards';
 import {motion} from 'framer-motion'
+import AllMatches from './InfoCards/AllMatches';
 
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
     animate={{width:'100%',transition:{duration:'0.2'}}}
     exit={{x:'100%'}}>
         <MainCarousel/>
-        <ShowCards/>
+        <AllMatches/>
       </motion.div>
 
     );
