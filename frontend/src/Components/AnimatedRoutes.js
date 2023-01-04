@@ -6,6 +6,7 @@ import Search from './search/Search'
 import BookNow from './bookNow/bookNow';
 import Home from './Home'
 import {AnimatePresence} from 'framer-motion'
+import AllMatches from "./InfoCards/AllMatches";
 export default function AnimatedRoutes(){
 const location = useLocation()
 return(
@@ -13,7 +14,7 @@ return(
     <Routes location={location} key={location.pathname}>
     <Route exact path="/" element={<Home />}>
     </Route>
-    <Route exact path="/browse" element={<ShowCards />}>
+    <Route exact path="/browse" element={<AllMatches />}>
     </Route>
     <Route exact path="/match/:id" element={<BookNow />}>
     </Route>
