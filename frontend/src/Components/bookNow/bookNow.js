@@ -12,8 +12,17 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
 import Form from 'react-bootstrap/Form';
+import Feedback from 'react-bootstrap/Feedback';
+
+
+
+
+
 
 export default function BookNow() {
+  
+
+  
     let [quan1, setQuan1] = useState(0);
     let [quan2, setQuan2] = useState(0);
     let [quan3, setQuan3] = useState(0);
@@ -36,6 +45,23 @@ export default function BookNow() {
      date = tas.dateUtc.split('T')[0]    
 
   }
+
+
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
+
+
+
   function incrementCount(count, setCount,cat,match1) {
     if(count>=2){
         alert('Sorry, you can only buy 2 tickets at a time from each category')
@@ -163,49 +189,89 @@ export default function BookNow() {
 
       </ol>
       Total = {Total}
-      <InputGroup className="mb-3">
+      
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+      <InputGroup className="mb-3" hasValidation>
         <InputGroup.Text id="inputGroup-sizing-default">
           Email
         </InputGroup.Text>
         <Form.Control
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-        />
-      </InputGroup>
-      <div style={{padding:'30px'}}>
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="inputGroup-sizing-default">
-          Card Number
-        </InputGroup.Text>
-        <Form.Control
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-      <InputGroup.Text>Expiration</InputGroup.Text>
-      <Form.Control placeholder='Month'aria-label="Month" />
-      <Form.Control placeholder='Year'aria-label="Year" />
-    </InputGroup>
-    <InputGroup className="mb-3">
-        <InputGroup.Text id="inputGroup-sizing-default">
-          CVC
-        </InputGroup.Text>
-        <Form.Control
+        type='email' 
+        required
 
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
         />
+        <Form.Control.Feedback type="invalid">
+              Please enter a valid email address
+            </Form.Control.Feedback>
+      
       </InputGroup>
-      </div>
+      <div style={{padding:'30px'}}>
+      <InputGroup className="mb-3" hasValidation>
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Card Number
+        </InputGroup.Text>
+       
+        
+ <Form.Control
+        required
+        pattern="[\d| ]{16,22}"
+        aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+        <Form.Control.Feedback type="invalid">
+              Please enter a valid Credit Card Number
+            </Form.Control.Feedback>
+      </InputGroup>
+
+
+      <InputGroup className="mb-3" hasValidation>
+      <InputGroup.Text>Expiration</InputGroup.Text>
+      <Form.Control placeholder='Month'aria-label="Month"
+      required
+      pattern="[0-1][0-9]"
+       />
+        
+      <Form.Control placeholder='Year'aria-label="Year" 
+      required
+      pattern="[\d]{2}"
+      />
+      <Form.Control.Feedback type="invalid">
+              Please enter a valid Month/Year
+            </Form.Control.Feedback>
+    </InputGroup>
+
+
+    <InputGroup className="mb-3" hasValidation>
+        <InputGroup.Text id="inputGroup-sizing-default">
+          CVC
+        </InputGroup.Text>
+        <Form.Control
+required
+pattern="[\d]{3}"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+        <Form.Control.Feedback type="invalid">
+              Please enter a valid CVC
+            </Form.Control.Feedback>
+      </InputGroup>
+
+
+
+      </div>     
       <div className="Pay">
         <ReCAPTCHA className="Recaptcha"
        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
          onChange={e=>onChange()} 
 
         />
-        <Button  className="PayButton" disabled = {!CapVerified}>Pay</Button>
+
+        <Button  type = "submit" className="PayButton" disabled = {!CapVerified}>Pay</Button>
       </div>
+      </Form>
        </div>
          <div className="category1">
          <h1 className='Title'> Category 1</h1>
