@@ -1,46 +1,18 @@
 
 import "./booknow.scss";
-import React, { render,useState } from "react";
+import React, { render,useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Button from 'react-bootstrap/Button';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import InputGroup from 'react-bootstrap/InputGroup';
 import {motion} from 'framer-motion'
 import { renderMatches } from "react-router-dom";
+import axios from "axios"; 
+import { useParams } from "react-router-dom";
+import useFetch from "../useFetch";
+import Form from 'react-bootstrap/Form';
 
-
-const match ={
-    
-        "_id": "639c7980d4aadd7d87861826",
-        "matchNumber": 3,
-        "roundNumber": 1,
-        "dateUtc": "2022-11-21T13:00:00Z",
-        "location": "Khalifa International Stadium",
-        "availability": {
-            "category1": {
-                "count": 18,
-                "price": 75,
-                "pending": 1
-            },
-            "category2": {
-                "count": 18,
-                "price": 125,
-                "pending": 18
-            },
-            "category3": {
-                "count": 20,
-                "price": 195,
-                "pending": 20
-            }
-        },
-        "homeTeam": "England",
-        "homeTeamFlag": "https://cdn.britannica.com/44/344-004-494CC2E8/Flag-England.jpg",
-        "awayTeam": "Iran",
-        "group": "B",
-        "awayTeamFlag": "https://cdn.britannica.com/22/1722-004-EAD033D8/Flag-Iran.jpg "
-    
-}
 export default function BookNow() {
     let [quan1, setQuan1] = useState(0);
     let [quan2, setQuan2] = useState(0);
@@ -48,10 +20,23 @@ export default function BookNow() {
     let [Order, setOrder] = useState([]);
     let [Total, setTotal] = useState(0);
     let [CapVerified, setCapVerified] = useState(false);
+   let price1 
+    let price2
+    let price3
+     let date 
+  const { id } = useParams();
+  console.log(id)
 
-    
+  const { data: tas, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/matches/' + id)
+  const availability= tas.availability
+  if(availability){
+      price1 = availability.category1.price
+      price2 = availability.category2.price
+      price3 = availability.category3.price
+     date = tas.dateUtc.split('T')[0]    
 
-  function incrementCount(count, setCount,cat) {
+  }
+  function incrementCount(count, setCount,cat,match1) {
     if(count>=2){
         alert('Sorry, you can only buy 2 tickets at a time from each category')
         return
@@ -65,14 +50,14 @@ export default function BookNow() {
             alert('Sorry, you can only buy from two categories at a time ')
             return
         }
-        if(  match.availability.category1.pending-count<=0){
+        if(  match1.availability.category1.pending-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
         count = count + 1;
         setCount(count);
-        Order.push(match.homeTeam + ' VS ' + match.awayTeam +  ' Category 1 Price:'+ match.availability.category1.price)
-        setTotal(Total+match.availability.category1.price)
+        Order.push(match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 1 Price:'+ match1.availability.category1.price)
+        setTotal(Total+match1.availability.category1.price)
         setOrder(Order);
     }
     if(cat===2){
@@ -80,14 +65,14 @@ export default function BookNow() {
          alert('Sorry, you can only buy from two categories at a time ')
          return
         }
-        if(match.availability.category2.pending-count<=0){
+        if(match1.availability.category2.pending-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
         count = count + 1;
         setCount(count);
-        Order.push(match.homeTeam + ' VS ' + match.awayTeam +  ' Category 2 Price:'+ match.availability.category2.price)
-        setTotal(Total+match.availability.category2.price)
+        Order.push(match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 2 Price:'+ match1.availability.category2.price)
+        setTotal(Total+match1.availability.category2.price)
         setOrder(Order);
         console.log(Order)
     }
@@ -96,46 +81,46 @@ export default function BookNow() {
             alert('Sorry, you can only buy from two categories at a time ')
             return
         }
-        if(match.availability.category3.pending-count<=0){
+        if(match1.availability.category3.pending-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
         count = count + 1;
         setCount(count);
-        Order.push(match.homeTeam + ' VS ' + match.awayTeam +  ' Category 3 Price:'+ match.availability.category3.price)
-        setTotal(Total+match.availability.category3.price)
+        Order.push(match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 3 Price:'+ match1.availability.category3.price)
+        setTotal(Total+match1.availability.category3.price)
         setOrder(Order);
     }
 
    
   }
-  function decrementCount(count,setCount,cat) {
+  function decrementCount(count,setCount,cat,match1) {
     if(count<=0){
         return
     }
     count = count - 1;
     setCount(count);
     if(cat===1){
-        let carIndex = Order.indexOf( match.homeTeam + ' VS ' + match.awayTeam +  ' Category 1 Price:'+ match.availability.category1.price )
+        let carIndex = Order.indexOf( match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 1 Price:'+ match1.availability.category1.price )
         Order.splice(carIndex, 1); 
         setOrder(Order);
-        setTotal(Total-match.availability.category1.price)
+        setTotal(Total-match1.availability.category1.price)
     }
     if(cat===2){
-        let carIndex = Order.indexOf( match.homeTeam + ' VS ' + match.awayTeam +  ' Category 2 Price:'+ match.availability.category2.price )
+        let carIndex = Order.indexOf( match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 2 Price:'+ match1.availability.category2.price )
         Order.splice(carIndex, 1); 
         setOrder(Order);
-        setTotal(Total-match.availability.category2.price)
+        setTotal(Total-match1.availability.category2.price)
     }
     if(cat===3){
-        let carIndex = Order.indexOf( match.homeTeam + ' VS ' + match.awayTeam +  ' Category 3 Price:'+ match.availability.category3.price )
+        let carIndex = Order.indexOf( match1.homeTeam + ' VS ' + match1.awayTeam +  ' Category 3 Price:'+ match1.availability.category3.price )
         Order.splice(carIndex, 1); 
         setOrder(Order);
-        setTotal(Total-match.availability.category3.price)
+        setTotal(Total-match1.availability.category3.price)
     }
   }
-  let date = match.dateUtc.split('T')[0]    
-  
+
+
   function onChange(){
     setCapVerified(true)
   }
@@ -152,20 +137,20 @@ export default function BookNow() {
          <div className="DateLoc">
          <div>Date: {date}</div> 
           
-            <div className='loc'>Location: {match.location}</div>
+            <div className='loc'>Location: {tas.location}</div>
             </div>
             <div className='info'> 
-           <div> Match Number: {match.matchNumber}</div>
-           <div> Round Number: {match.roundNumber}</div>
+           <div> Match Number: {tas.matchNumber}</div>
+           <div> Round Number: {tas.roundNumber}</div>
            
-            <div>Group: {match.group}</div>
+            <div>Group: {tas.group}</div>
         </div>
             <div className="flags">
-         <img className='Flag1'src={match.homeTeamFlag} ></img>
+         <img className='Flag1'src={tas.homeTeamFlag} ></img>
          VS
-         <img className='Flag2'src={match.awayTeamFlag} ></img><br/>
-        <div className="Label1">{match.homeTeam}</div>
-         <div className="Label2">{match.awayTeam}
+         <img className='Flag2'src={tas.awayTeamFlag} ></img><br/>
+        <div className="Label1">{tas.homeTeam}</div>
+         <div className="Label2">{tas.awayTeam}
         </div><br/>
         </div>
        </div>
@@ -178,6 +163,41 @@ export default function BookNow() {
 
       </ol>
       Total = {Total}
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Email
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      <div style={{padding:'30px'}}>
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Card Number
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      <InputGroup className="mb-3">
+      <InputGroup.Text>Expiration</InputGroup.Text>
+      <Form.Control placeholder='Month'aria-label="Month" />
+      <Form.Control placeholder='Year'aria-label="Year" />
+    </InputGroup>
+    <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          CVC
+        </InputGroup.Text>
+        <Form.Control
+
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      </div>
       <div className="Pay">
         <ReCAPTCHA className="Recaptcha"
        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
@@ -189,35 +209,35 @@ export default function BookNow() {
        </div>
          <div className="category1">
          <h1 className='Title'> Category 1</h1>
-         Count:{match.availability.category1.count}<br/>
-           Price: {match.availability.category1.price}<br/>
-           Pending: {match.availability.category1.pending}<br/>
+   
+           Price: {price1}<br/>
+      
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>decrementCount(quan1,setQuan1,1)}>-</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan1,setQuan1,1,tas)}>-</Button>
                <div className="quantity">{quan1}</div>
-      <Button className='addQuantity'onClick={e=>incrementCount(quan1,setQuan1,1)}>+</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan1,setQuan1,1,tas)}>+</Button>
       </div>
          </div>
          <div className="category2">
          <h1 className='Title'> Category 2</h1>
-        Count:{match.availability.category2.count}<br/>
-            Price:{match.availability.category2.price}<br/>
-           Pending: {match.availability.category2.pending}
+      
+            Price:{price2}<br/>
+       
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>decrementCount(quan2,setQuan2,2)}>-</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan2,setQuan2,2,tas)}>-</Button>
                <div className="quantity">{quan2}</div>
-      <Button className='addQuantity'onClick={e=>incrementCount(quan2,setQuan2,2)}>+</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan2,setQuan2,2,tas)}>+</Button>
       </div>
          </div>
          <div className="category3">
            <h1 className='Title'> Category 3</h1>
-         Count:{match.availability.category3.count}<br/>
-            Price:{match.availability.category3.price}<br/>
-           Pending: {match.availability.category3.pending}
+      
+            Price:{price3}<br/>
+      
            <div className='QuantitySection'>
-           <Button className='addQuantity'onClick={e=>decrementCount(quan3,setQuan3,3)}>-</Button>
+           <Button className='addQuantity'onClick={e=>decrementCount(quan3,setQuan3,3,tas)}>-</Button>
                <div className="quantity">{quan3}</div>
-      <Button className='addQuantity'onClick={e=>incrementCount(quan3,setQuan3,3)}>+</Button>
+      <Button className='addQuantity'onClick={e=>incrementCount(quan3,setQuan3,3,tas)}>+</Button>
       </div>
          </div>
           

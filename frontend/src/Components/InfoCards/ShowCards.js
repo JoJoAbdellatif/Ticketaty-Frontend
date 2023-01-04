@@ -1,144 +1,72 @@
 import FlipCard from "./MatchCards";
-import Paginate from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
 import {motion} from 'framer-motion'
+import axios from "axios"; 
+import useFetch from "../useFetch";
+import React, { render,useEffect,useState,isRendered,useRef } from "react";
+import { Button } from "bootstrap";
+import Lottie from 'react-lottie';
+import animationData from '../../lotties/loading.json';
 
-const cards = [
- {
-  "_id": "63976f75d4aadd7d875e8ec9",
-  "matchNumber": 1,
-  "roundNumber": 1,
-  "dateUtc": "2022-11-20T16:00:00Z",
-  "location": "Al Bayt Stadium",
-  "availability": {
-      "category1": {
-          "count": 19,
-          "price": 75
-      },
-      "category2": {
-          "count": 18,
-          "price": 125
-      },
-      "category3": {
-          "count": 20,
-          "price": 195
-      }
-  },
-  "homeTeam": "Qatar",
-  "awayTeam": "Ecuador",
-  "homeimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_Qatar_%283-2%29.svg/1200px-Flag_of_Qatar_%283-2%29.svg.png",
-    "awayimage":"https://media.istockphoto.com/id/689094754/vector/flag-of-ecuador.jpg?s=612x612&w=0&k=20&c=up-thIaaQ5h_XtoCXOwUJHu3PsMnPOcKR0Vv-jUhf1c=",
-  "group": "A",
-  "category1": {
-      "count": 19
-  }
-},
-{
-    "_id": "63976f75d4aadd7d875e8ec9",
-    "matchNumber": 1,
-    "roundNumber": 1,
-    "dateUtc": "2022-11-20T16:00:00Z",
-    "location": "Al Bayt Stadium",
-    "availability": {
-        "category1": {
-            "count": 19,
-            "price": 75
-        },
-        "category2": {
-            "count": 18,
-            "price": 125
-        },
-        "category3": {
-            "count": 20,
-            "price": 195
-        }
-    },
-    "homeTeam": "Qatar",
-    "awayTeam": "Ecuador",
-    "homeimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_Qatar_%283-2%29.svg/1200px-Flag_of_Qatar_%283-2%29.svg.png",
-      "awayimage":"https://media.istockphoto.com/id/689094754/vector/flag-of-ecuador.jpg?s=612x612&w=0&k=20&c=up-thIaaQ5h_XtoCXOwUJHu3PsMnPOcKR0Vv-jUhf1c=",
-    "group": "A",
-    "category1": {
-        "count": 19
+export default function ShowCards(props) {
+ const page = props.page
+  const [cards2, setCards2] = useState(null);
+  const [isPending, setIsPending] = useState(true)
+  useEffect(() => {
+    isRendered = true;
+    console.log(page);
+
+        axios.get('https://ticketaty-shop.vercel.app/matches/'+ '?p=' + page)
+        .then(res => {
+            if (isRendered) {
+              setCards2(Object.assign(res.data))
+            }
+
+            setIsPending(false)
+            return null;
+
+        })
+        .catch(err => console.log(err))   
+      
+    return () => {
+        isRendered = false;
+    };
+}, [page]);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
     }
-  },
-  {
-    "_id": "63976f75d4aadd7d875e8ec9",
-    "matchNumber": 1,
-    "roundNumber": 1,
-    "dateUtc": "2022-11-20T16:00:00Z",
-    "location": "Al Bayt Stadium",
-    "availability": {
-        "category1": {
-            "count": 19,
-            "price": 75
-        },
-        "category2": {
-            "count": 18,
-            "price": 125
-        },
-        "category3": {
-            "count": 20,
-            "price": 195
-        }
-    },
-    "homeTeam": "Qatar",
-    "awayTeam": "Ecuador",
-    "homeimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_Qatar_%283-2%29.svg/1200px-Flag_of_Qatar_%283-2%29.svg.png",
-      "awayimage":"https://media.istockphoto.com/id/689094754/vector/flag-of-ecuador.jpg?s=612x612&w=0&k=20&c=up-thIaaQ5h_XtoCXOwUJHu3PsMnPOcKR0Vv-jUhf1c=",
-    "group": "A",
-    "category1": {
-        "count": 19
-    }
-  },
-  {
-    "_id": "63976f75d4aadd7d875e8ec9",
-    "matchNumber": 1,
-    "roundNumber": 1,
-    "dateUtc": "2022-11-20T16:00:00Z",
-    "location": "Al Bayt Stadium",
-    "availability": {
-        "category1": {
-            "count": 19,
-            "price": 75
-        },
-        "category2": {
-            "count": 18,
-            "price": 125
-        },
-        "category3": {
-            "count": 20,
-            "price": 195
-        }
-    },
-    "homeTeam": "Qatar",
-    "awayTeam": "Ecuador",
-    "homeimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_Qatar_%283-2%29.svg/1200px-Flag_of_Qatar_%283-2%29.svg.png",
-      "awayimage":"https://media.istockphoto.com/id/689094754/vector/flag-of-ecuador.jpg?s=612x612&w=0&k=20&c=up-thIaaQ5h_XtoCXOwUJHu3PsMnPOcKR0Vv-jUhf1c=",
-    "group": "A",
-    "category1": {
-        "count": 19
-    }
-  }
+  };
 
+ 
+    console.log(page);
 
-]
-
-
-export default function ShowCards() {
+          
     return (
         
       <motion.div className=""
       initial={{width:0}}
       animate={{width:'100%',transition:{duration:'0.2'}}}
       exit={{x:'100%'}}>
-      <div></div> 
       
-            {cards.map((card) => (
-              <FlipCard key={card.id} card={card} />
+          
+             {isPending && <div class="d-flex justify-content-center">
+             <Lottie 
+	    options={defaultOptions}
+        height={400}
+        width={400}
+      />
+
+</div>}
+      {cards2 &&   cards2.map((card) => (
+              <FlipCard key={card._id} card={card} />
             ))}
-          <Paginate/>
+      
       </motion.div>
     );
   }

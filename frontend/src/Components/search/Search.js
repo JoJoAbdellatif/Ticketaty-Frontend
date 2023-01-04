@@ -4,7 +4,10 @@ import React from "react";
 import { useState } from "react";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import ShowCards from "../InfoCards/ShowCards";
+import FlipCard from "../InfoCards/MatchCards";
+import useFetch from "../useFetch";
 import './search.css'
+import axios from "axios";
 export default function Search() {
     const [data,setData] = useState([])
     
@@ -38,23 +41,22 @@ export default function Search() {
       const handleOnSearch = (string, results) => {
         // onSearch will have as the first callback parameter
         // the string searched and for the second the results.
-        console.log(string)
+        console.log('https://ticketaty-shop.vercel.app/matches/search/' + string)
+        axios.get('https://ticketaty-shop.vercel.app/matches/search/' + string).then((res)=>{
+            setData(res.data)
+        })
         
       }
     
-      const handleOnHover = (result) => {
-        // the item hovered
-        console.log(result)
-      }
+    
     
       const handleOnSelect = (item) => {
         // the item selected
-        console.log(item)
+        console.log('Selected')
+  
       }
     
-      const handleOnFocus = () => {
-        console.log('Focused')
-      }
+     
     
       const formatResult = (item) => {
         return (
@@ -71,17 +73,20 @@ export default function Search() {
             <div style={{ width: 400 }}>
               <ReactSearchAutocomplete
                 items={items}
-                onSearch={handleOnSearch}
-                onHover={handleOnHover}
-                onSelect={handleOnSelect}
-                onFocus={handleOnFocus}
-                autoFocus
+                onSearch= {handleOnSearch}
+                onClick={(e)=>handleOnSearch()}
+                onSelect={handleOnSelect()}
+            
+                
                 formatResult={formatResult}
               />
+  
             </div>
           </header>
           <div>Results:</div>
-          <ShowCards/>
+          {data.map((card) => (
+              <FlipCard key={card._id} card={card} />
+            ))}
         </div>
       )
 }
