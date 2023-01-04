@@ -1,20 +1,39 @@
 import FlipCard from "./MatchCards";
-import Paginate from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
 import {motion} from 'framer-motion'
 import axios from "axios"; 
 import useFetch from "../useFetch";
-import Pagination from 'react-bootstrap/Pagination';
-import React, { render,useEffect,useState } from "react";
+import React, { render,useEffect,useState,isRendered,useRef } from "react";
 import { Button } from "bootstrap";
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/loading.json';
 
 export default function ShowCards(props) {
  const page = props.page
-  const { data: cards2, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/matches/'+ '?page=' + page)
-  
+  const [cards2, setCards2] = useState(null);
+  const [isPending, setIsPending] = useState(true)
+  useEffect(() => {
+    isRendered = true;
+    console.log(page);
+
+        axios.get('https://ticketaty-shop.vercel.app/matches/'+ '?p=' + page)
+        .then(res => {
+            if (isRendered) {
+              setCards2(Object.assign(res.data))
+            }
+
+            setIsPending(false)
+            return null;
+
+        })
+        .catch(err => console.log(err))   
+      
+    return () => {
+        isRendered = false;
+    };
+}, [page]);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,

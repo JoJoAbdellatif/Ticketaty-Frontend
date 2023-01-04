@@ -5,13 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Button from 'react-bootstrap/Button';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import InputGroup from 'react-bootstrap/InputGroup';
 import {motion} from 'framer-motion'
 import { renderMatches } from "react-router-dom";
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
-
+import Form from 'react-bootstrap/Form';
 
 export default function BookNow() {
     let [quan1, setQuan1] = useState(0);
@@ -163,6 +163,41 @@ export default function BookNow() {
 
       </ol>
       Total = {Total}
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Email
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      <div style={{padding:'30px'}}>
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Card Number
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      <InputGroup className="mb-3">
+      <InputGroup.Text>Expiration</InputGroup.Text>
+      <Form.Control placeholder='Month'aria-label="Month" />
+      <Form.Control placeholder='Year'aria-label="Year" />
+    </InputGroup>
+    <InputGroup className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-default">
+          CVC
+        </InputGroup.Text>
+        <Form.Control
+
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </InputGroup>
+      </div>
       <div className="Pay">
         <ReCAPTCHA className="Recaptcha"
        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
