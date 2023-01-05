@@ -3,7 +3,12 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import './search.css';
 export default function Search() {
-    return(
+    
+  function search(){
+    console.log("searching")
+  }
+  
+  return(
         <div>
           <form >  
             <div className='searchArea'>   
@@ -14,7 +19,7 @@ export default function Search() {
                         <input type="text" placeholder="Search" className=""  /><br /><br></br>
                         
                         <div class="input-group-append">
-                        <Button>Search</Button>
+                        <Button onClick={(e)=>search()}>Search</Button>
                            
                         </div>
                     </div><br></br>
