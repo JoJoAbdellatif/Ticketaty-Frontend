@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import ReCAPTCHA from "react-google-recaptcha";
 import InputGroup from 'react-bootstrap/InputGroup';
-import {motion} from 'framer-motion'
+import {calcLength, motion} from 'framer-motion'
 import { renderMatches } from "react-router-dom";
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
@@ -22,19 +22,28 @@ import Feedback from 'react-bootstrap/Feedback';
 export default function BookNow() {
   
 
-  
+  const [email, setEmail] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardYearexp, setCardYearexp] = useState('');
+  const [cardMonthexp, setCardMonthexp] = useState('');
+  const [cardCvc, setCardCvc] = useState('');
+
     let [quan1, setQuan1] = useState(0);
     let [quan2, setQuan2] = useState(0);
     let [quan3, setQuan3] = useState(0);
     let [Order, setOrder] = useState([]);
     let [Total, setTotal] = useState(0);
     let [CapVerified, setCapVerified] = useState(false);
-   let price1 
+    let price1 
     let price2
     let price3
-     let date 
-  const { id } = useParams();
-  console.log(id)
+    let [cats, setCats] = useState(0);
+    let[price, setPrice] = useState(0);
+    let[quan, setQuan] = useState(0);
+   
+    let date 
+    const { id } = useParams();
+    console.log(id)
 
   const { data: tas, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/matches/' + id)
   const availability= tas.availability
@@ -42,7 +51,7 @@ export default function BookNow() {
       price1 = availability.category1.price
       price2 = availability.category2.price
       price3 = availability.category3.price
-     date = tas.dateUtc.split('T')[0]    
+      date = tas.dateUtc.split('T')[0]    
 
   }
 
@@ -57,12 +66,62 @@ export default function BookNow() {
     }
 
     setValidated(true);
+
+
+    if(CapVerified===false){
+        alert('Please verify you are not a robot')
+        return
+    }
+    if(quan1===0 && quan2===0 && quan3===0){
+        alert('Please select at least one ticket')
+        return
+    }
+    if(quan1>0){
+      setCats(1)
+      setQuan(quan1)
+      setPrice(price1)
+    }
+    if(quan2>0){
+      setCats(2)
+      setQuan(quan2)
+      setPrice(price2)
+    }
+    if(quan3>0){
+      setCats(3)
+      setQuan(quan3)
+      setPrice(price3)
+    }
+
+
+    axios.post('https://ticketaty-reservations.vercel.app/api/reservation', {
+        email: email,
+        matchNumber: id,
+        tickets:
+            {
+                category: cats,
+                quantity: quan,
+                price:price
+            },
+        card:{
+            number:cardNumber,
+            expirationMonth:cardMonthexp,
+            expirationYear:cardYearexp,
+            cvc: cardCvc
+        }
+    
+    }
+    
+    ).then(function (response) {
+        alert('Reservation Done Successfully')
+      })
+    
   };
 
 
 
 
   function incrementCount(count, setCount,cat,match1) {
+   
     if(count>=2){
         alert('Sorry, you can only buy 2 tickets at a time from each category')
         return
@@ -72,11 +131,11 @@ export default function BookNow() {
         return
     }
     if(cat===1){
-        if(quan2 !== 0 && quan3 !== 0){
-            alert('Sorry, you can only buy from two categories at a time ')
+        if(quan2 !== 0 || quan3 !== 0){
+            alert('Sorry, you can only buy from one categories at a time ')
             return
         }
-        if(  match1.availability.category1.pending-count<=0){
+        if(  match1.availability.category1.available-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
@@ -87,11 +146,11 @@ export default function BookNow() {
         setOrder(Order);
     }
     if(cat===2){
-        if(quan1 !== 0 && quan3 !== 0){
-         alert('Sorry, you can only buy from two categories at a time ')
+        if(quan1 !== 0 || quan3 !== 0){
+         alert('Sorry, you can only buy from one categories at a time ')
          return
         }
-        if(match1.availability.category2.pending-count<=0){
+        if(match1.availability.category2.available-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
@@ -103,11 +162,11 @@ export default function BookNow() {
         console.log(Order)
     }
     if(cat===3){
-        if(quan1 !== 0 && quan2 !== 0){
-            alert('Sorry, you can only buy from two categories at a time ')
+        if(quan1 !== 0 || quan2 !== 0){
+            alert('Sorry, you can only buy from one categories at a time ')
             return
         }
-        if(match1.availability.category3.pending-count<=0){
+        if(match1.availability.category3.available-count<=0){
             alert('Sorry, Tickets Sold Out ')
             return
         }
@@ -117,7 +176,23 @@ export default function BookNow() {
         setTotal(Total+match1.availability.category3.price)
         setOrder(Order);
     }
-
+    console.log({
+      email: email,
+      matchNumber: id,
+      tickets:
+          {
+              category: cats,
+              quantity: quan,
+              price:price
+          },
+      card:{
+          number:cardNumber,
+          expirationMonth:cardMonthexp,
+          expirationYear:cardYearexp,
+          cvc: cardCvc
+      }
+  
+  })
    
   }
   function decrementCount(count,setCount,cat,match1) {
@@ -193,15 +268,16 @@ export default function BookNow() {
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
       <InputGroup className="mb-3" hasValidation>
-        <InputGroup.Text id="inputGroup-sizing-default">
+        <InputGroup.Text id="inputGroup-sizing-default" >
           Email
         </InputGroup.Text>
         <Form.Control
         type='email' 
-        required
+        
 
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
+          required value={email} onChange={(e) => setEmail(e.target.value)}
         />
         <Form.Control.Feedback type="invalid">
               Please enter a valid email address
@@ -216,7 +292,7 @@ export default function BookNow() {
        
         
  <Form.Control
-        required
+        required value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} 
         pattern="[\d| ]{16,22}"
         aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
@@ -230,12 +306,12 @@ export default function BookNow() {
       <InputGroup className="mb-3" hasValidation>
       <InputGroup.Text>Expiration</InputGroup.Text>
       <Form.Control placeholder='Month'aria-label="Month"
-      required
-      pattern="[0-1][0-9]"
+       required value={cardMonthexp} onChange={(e) => setCardMonthexp(e.target.value)} 
+      pattern="(0[1-9]|1[012])"
        />
         
       <Form.Control placeholder='Year'aria-label="Year" 
-      required
+       required value={cardYearexp} onChange={(e) => setCardYearexp(e.target.value)} 
       pattern="[\d]{2}"
       />
       <Form.Control.Feedback type="invalid">
@@ -249,7 +325,7 @@ export default function BookNow() {
           CVC
         </InputGroup.Text>
         <Form.Control
-required
+        required value={cardCvc} onChange={(e) => setCardCvc(e.target.value)}
 pattern="[\d]{3}"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
