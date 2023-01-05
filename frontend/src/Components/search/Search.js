@@ -1,11 +1,34 @@
 
 import React from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './search.css';
+import axios from "axios";
+import Lottie from 'react-lottie';
+import FlipCard from "../InfoCards/MatchCards";
+import useFetch from '../useFetch';
 export default function Search() {
-    return(
+  const [searched , setSearched] = useState('');
+  const [data,setData] = useState([])
+  const handleSubmit = (e) => {
+      e.preventDefault();
+    
+      
+  };
+  
+  function search(e,id){
+    
+    axios.get(`https://ticketaty-shop.vercel.app/search/${id}`).then(function (response) {
+        setData(response.data)
+        console.log(data);
+    })
+    console.log(id); 
+    return
+  }
+  
+  return(
         <div>
-          <form >  
+          <form onSubmit={handleSubmit} >  
             <div className='searchArea'>   
                     <div class="input-group input-group-lg">
                         <div class="input-group-prepend">
@@ -17,7 +40,8 @@ export default function Search() {
 
                         <div class="buttons">
                           
-      <button class="button input-group-append" type="button">Search</button>
+      <Button class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>
+
      </div>
      </div>
 
@@ -27,6 +51,10 @@ export default function Search() {
 
  
                 </form>
+            
+      {data &&   data.map((card) => (
+              <FlipCard key={card._id} card={card} />
+            ))}
                 
       </div>
  
