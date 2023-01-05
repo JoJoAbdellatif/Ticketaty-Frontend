@@ -7,6 +7,7 @@ import axios from "axios";
 import Lottie from 'react-lottie';
 import FlipCard from "../InfoCards/MatchCards";
 import useFetch from '../useFetch';
+
 export default function Search() {
   const [searched , setSearched] = useState('');
   const [data,setData] = useState([])
@@ -30,19 +31,19 @@ export default function Search() {
         <div>
           <form onSubmit={handleSubmit} >  
             <div className='searchArea'>   
-                    <div class="input-group input-group-lg">
+                    <div className="input-group input-group-lg">
                         <div class="input-group-prepend">
                             
                         </div>
 
-                        <div className='bar'>
-                        <input type="text" placeholder=" Search" className="searchbar"/>                 
+                       
+                        <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder=" Search" />                 
 
                         <div class="buttons">
                           
       <Button class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>
 
-     </div>
+ 
      </div>
 
                     </div>
