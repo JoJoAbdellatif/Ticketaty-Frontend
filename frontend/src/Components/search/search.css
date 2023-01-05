@@ -7,3 +7,52 @@ align-items: center;
 justify-content: center;
 }
 
+.searchbar{
+    height:45px;
+    border:none;
+    width:500px;
+    font-size:16px;
+    outline: none;
+    border-radius: 30px;
+    padding: 0 20px;
+   
+  }
+
+  .bar{
+    margin:0 auto;
+    width:575px;
+    border-radius:30px;
+    padding: 500px;
+  }
+  .searchbar:hover{
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+  }
+  .searchbar:focus-within{
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline:none;
+  }
+
+  .buttons{
+    margin-top:30px;
+    padding-left: 200px;
+  }
+  .button{
+    background-color: #E14D2A;
+    border:none;
+    color:#ffffff;
+    font-size:15px;
+    padding: 10px 20px;
+    margin:5px;
+    border-radius:10px;
+    outline:none;
+  }
+  .button:hover{
+    border: 1px solid #c8c8c8;
+    padding: 9px 19px;
+    color:#808080;
+  }
+  .button:focus{
+    border:1px solid #4885ed;
+    padding: 9px 19px;
+  }
+  

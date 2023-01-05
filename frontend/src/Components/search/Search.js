@@ -11,15 +11,21 @@ export default function Search() {
                         <div class="input-group-prepend">
                             
                         </div>
-                        <input type="text" placeholder="Search" className=""  /><br /><br></br>
-                        
-                        <div class="input-group-append">
-                        <Button>Search</Button>
-                           
-                        </div>
-                    </div><br></br>
-                   
-                    </div>   
+
+                        <div className='bar'>
+                        <input type="text" placeholder=" Search" className="searchbar"/>                 
+
+                        <div class="buttons">
+                          
+      <button class="button input-group-append" type="button">Search</button>
+     </div>
+     </div>
+
+                    </div>
+                    </div> 
+
+
+ 
                 </form>
                 
       </div>
