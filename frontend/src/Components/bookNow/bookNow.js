@@ -119,8 +119,9 @@ export default function BookNow() {
       }
     }
     )
-    .then((response) => window.assign.location('http://localhost:3000/Confirmed'))
-
+    .then((response) => alert("ay haga"))
+    
+     window.assign.location('http://localhost:3000/Confirmed')
   }
 
 
