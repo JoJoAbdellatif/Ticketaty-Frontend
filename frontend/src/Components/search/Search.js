@@ -7,8 +7,10 @@ import axios from "axios";
 import Lottie from 'react-lottie';
 import FlipCard from "../InfoCards/MatchCards";
 import useFetch from '../useFetch';
-
+import { Navigate,useNavigate } from "react-router-dom";
 export default function Search() {
+  const navigate = useNavigate();
+
   const [searched , setSearched] = useState('');
   const [data,setData] = useState([])
   const handleSubmit = (e) => {
@@ -22,7 +24,10 @@ export default function Search() {
     axios.get(`https://ticketaty-security.vercel.app/search/${id}`).then(function (response) {
         setData(response.data)
         console.log(data);
-    })
+    }).catch(e=>{
+      navigate('/Error')
+
+    }  )
     console.log(id); 
     return
   }

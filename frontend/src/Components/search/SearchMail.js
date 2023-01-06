@@ -7,9 +7,13 @@ import axios from "axios";
 import Lottie from 'react-lottie';
 import useFetch from '../useFetch';
 import PurchasesCard from '../InfoCards/PurchasesCard';
+import { Navigate,useNavigate } from "react-router-dom";
+
 export default function SearchMail() {
+  const navigate = useNavigate();
   const [searched , setSearched] = useState('');
   const [data,setData] = useState([])
+
   const handleSubmit = (e) => {
       e.preventDefault();
     
@@ -21,6 +25,8 @@ export default function SearchMail() {
     axios.get(`https://ticketaty-security.vercel.app/ticket/${id}`).then(function (response) {
       setData(response.data)
       console.log(data);
+  }).catch(e=>{
+    navigate('/Error')
   })
   console.log(data);
     
