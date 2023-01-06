@@ -65,8 +65,10 @@ export default function BookNow() {
       event.stopPropagation();
     }
 
-    setValidated(true);
-    pay(event);
+    if(validated){
+      pay(event);
+
+    }
     
   };
 
