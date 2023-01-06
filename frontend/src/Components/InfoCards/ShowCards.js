@@ -4,7 +4,7 @@ import "./styles.scss";
 import {motion} from 'framer-motion'
 import axios from "axios"; 
 import useFetch from "../useFetch";
-import React, { render,useEffect,useState,isRendered,useRef } from "react";
+import React, { render,useEffect,useState,useRef } from "react";
 import { Button } from "bootstrap";
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/loading.json';
@@ -13,6 +13,8 @@ export default function ShowCards(props) {
  const page = props.page
   const [cards2, setCards2] = useState(null);
   const [isPending, setIsPending] = useState(true)
+  let isRendered = useRef(false);
+
   useEffect(() => {
     isRendered = true;
     console.log(page);
