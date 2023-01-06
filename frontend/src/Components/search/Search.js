@@ -30,21 +30,21 @@ export default function Search() {
   return(
         <div>
           <form onSubmit={handleSubmit} >  
-            <div className='searchArea'>   
+              
                     <div className="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            
-                        </div>
-
+                    <div className='searchArea'>
+                    <div>
                        
-                        <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder=" Search" />                 
+                        <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder=" Search" />
+                        <Button class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>                 
+                        </div>
 
                         <div class="buttons">
                           
-      <Button class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>
+    
 
- 
-     </div>
+      </div>
+
 
                     </div>
                     </div> 

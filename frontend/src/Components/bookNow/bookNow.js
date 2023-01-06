@@ -58,7 +58,7 @@ export default function BookNow() {
 
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit =  (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -91,34 +91,41 @@ export default function BookNow() {
       setQuan(quan3)
       setPrice(price3)
     }
-
-
-    axios.post('https://ticketaty-reservations.vercel.app/api/reservation', {
-        email: email,
-        matchNumber: id,
-        tickets:
-            {
-                category: cats,
-                quantity: quan,
-                price:price
-            },
-        card:{
-            number:cardNumber,
-            expirationMonth:cardMonthexp,
-            expirationYear:cardYearexp,
-            cvc: cardCvc
-        }
     
-    }
-    
-    ).then(function (response) {
-        alert('Reservation Done Successfully')
-      })
+
+    alert('Your Order is being processed')
+  
+  
     
   };
 
 
-
+  function TestClick(){
+    console.log('test')
+    const url = "http://localhost:5000/api/reservation";
+    axios.get("http://localhost:5000/api/health")
+    axios.post(url ,
+      {
+          email: 'yahiaabbas03@gmail.com',
+          matchNumber: 43,
+          tickets:
+              {
+                  category: 1,
+                  quantity: 2,
+                  price:75
+              },
+          card:{
+              number:'4242424242424242',
+              expirationMonth:12,
+              expirationYear:30,
+              cvc:'123'
+          }
+      }
+      , {
+          headers: { "Accept-Encoding": "gzip,deflate,compress" }
+      })
+      .then((response) => alert(response.data))
+  }
 
   function incrementCount(count, setCount,cat,match1) {
    
@@ -345,7 +352,9 @@ pattern="[\d]{3}"
 
         />
 
-        <Button  type = "submit" className="PayButton" disabled = {!CapVerified}>Pay</Button>
+        <button  type = "submit" className="PayButton" disabled = {!CapVerified}>Pay</button>
+        <Button onClick={e=>TestClick()}>Post</Button>
+
       </div>
       </Form>
        </div>
