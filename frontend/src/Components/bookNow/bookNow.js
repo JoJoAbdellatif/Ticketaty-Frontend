@@ -65,9 +65,11 @@ export default function BookNow() {
       event.preventDefault();
       event.stopPropagation();
     }
-
-    setValidated(true);
-    pay(event);
+    else{
+      setValidated(true);
+      pay(event);
+    }
+   
 
     
     
@@ -120,10 +122,14 @@ export default function BookNow() {
       }
     }
     )
-    .then((response) => alert("ay haga"))
-    alert('ay haga')
-    
+    .then((response) => {
+      alert('Your order is being proccesed')
+    })
+    .catch((error) => {
+      alert('Oops!! Something went wrong')
+    })
     navigate('/Confirmed')
+    alert('Your order is being proccesed')
   }
 
 
