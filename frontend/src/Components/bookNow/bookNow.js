@@ -120,8 +120,9 @@ export default function BookNow() {
     }
     )
     .then((response) => alert("ay haga"))
+    alert('ay haga')
     
-     window.assign.location('http://localhost:3000/Confirmed')
+    window.assign.location('http://localhost:3000/Confirmed')
   }
 
 
