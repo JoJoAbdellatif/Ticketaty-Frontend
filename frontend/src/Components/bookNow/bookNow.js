@@ -1,13 +1,13 @@
 
 import "./booknow.scss";
-import React, { render,useState,useEffect } from "react";
+import React, { render,useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Button from 'react-bootstrap/Button';
 import ReCAPTCHA from "react-google-recaptcha";
 import InputGroup from 'react-bootstrap/InputGroup';
 import {calcLength, motion} from 'framer-motion'
-import { renderMatches } from "react-router-dom";
+import { Navigate, renderMatches ,useNavigate} from "react-router-dom";
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
@@ -21,6 +21,7 @@ import Feedback from 'react-bootstrap/Feedback';
 
 export default function BookNow() {
   
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -122,7 +123,7 @@ export default function BookNow() {
     .then((response) => alert("ay haga"))
     alert('ay haga')
     
-    window.assign.location('http://localhost:3000/Confirmed')
+    navigate('/Confirmed')
   }
 
 

@@ -14,11 +14,7 @@ export default function Tick(){
         userBubbleColor: '#fff',
         userFontColor: '#4a4a4a',
       };
-      
-      function GoToPage(){
-        window.open('https://github.com/', "_blank");
-        return <p>Go to google</p>
-       }
+
 
 
     return (
@@ -26,24 +22,25 @@ export default function Tick(){
              <ThemeProvider theme={theme}>
       <ChatBot
        floating={true}
+       title="Say hi to Tick"
         steps={[
             {
-              id: '1',
-              message: 'What is your name?',
-              trigger: 'name',  
+              id: 'kick',
+              message: "Hi there! I am Tick of Ticketaty. I'm here to help, once I'm developed so stay tuned ! to check your ticket click on the more tab of the nav bar and select find my tickets there you can enter your email and check your tickets, for now let's get your name",
+              trigger: 'name2',
             },
             {
-                id: 'name',
+                id: 'name2',
                 user: true,
-                trigger: 'response1',
+                trigger: 'response2',
             },
             {
-                id: 'response1',
-                message: 'Hi {previousValue}, nice to meet you!',
+                id: 'response2',
+                message: 'Hi {previousValue}, nice to meet you! and happy Ticketing:)',
                 end: true,
             }
-           
-              
+
+
           ]
 
         }
@@ -51,5 +48,5 @@ export default function Tick(){
         </ThemeProvider>
 </div>
     );
-    
+
 }
