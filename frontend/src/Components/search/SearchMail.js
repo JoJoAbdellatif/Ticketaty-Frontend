@@ -18,7 +18,7 @@ export default function SearchMail() {
   
   function search(e,id){
     id = id.split(' ')[0]
-    axios.get(`https://ticketaty-shop.vercel.app/ticket/${id}`).then(function (response) {
+    axios.get(`https://ticketaty-security.vercel.app/ticket/${id}`).then(function (response) {
       setData(response.data)
       console.log(data);
   })

@@ -45,7 +45,7 @@ export default function BookNow() {
     const { id } = useParams();
     console.log(id)
 
-  const { data: tas, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/matches/' + id)
+  const { data: tas, error, isPending } = useFetch('https://ticketaty-security.vercel.app/matches/' + id)
   const availability= tas.availability
   if(availability){
       price1 = availability.category1.price
@@ -100,7 +100,7 @@ export default function BookNow() {
 
 
 
-  const url = "http://localhost:5000/api/reservation";
+  const url = "https://ticketaty-security.vercel.app/reservation";
   axios.post(url ,
     {
       email: email,

@@ -19,7 +19,7 @@ export default function Search() {
   
   function search(e,id){
     
-    axios.get(`https://ticketaty-shop.vercel.app/search/${id}`).then(function (response) {
+    axios.get(`https://ticketaty-security.vercel.app/search/${id}`).then(function (response) {
         setData(response.data)
         console.log(data);
     })

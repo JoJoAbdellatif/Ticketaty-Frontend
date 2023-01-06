@@ -17,7 +17,7 @@ export default function ShowCards(props) {
     isRendered = true;
     console.log(page);
 
-        axios.get('https://ticketaty-shop.vercel.app/matches/'+ '?p=' + page)
+        axios.get('https://ticketaty-security.vercel.app/matches'+ '?p=' + page)
         .then(res => {
             if (isRendered) {
               setCards2(Object.assign(res.data))
