@@ -13,7 +13,7 @@ export default function SearchMail() {
   const handleSubmit = (e) => {
       e.preventDefault();
     
-      
+          
   };
   
   function search(e,id){
