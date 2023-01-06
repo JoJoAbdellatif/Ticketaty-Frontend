@@ -96,8 +96,7 @@ export default function BookNow() {
 
     alert('Your Order is being processed')
 
-    const url = "http://localhost:5000/api/reservation";
-    axios.get("http://localhost:5000/api/health")
+    const url = "https://ticketaty-reservations.vercel.app/api/reservation";
     axios.post(url ,
       {
         email: email,
@@ -122,33 +121,6 @@ export default function BookNow() {
     
   };
 
-
-  function TestClick(){
-    console.log('test')
-    const url = "http://localhost:5000/api/reservation";
-    axios.get("http://localhost:5000/api/health")
-    axios.post(url ,
-      {
-          email: 'yahiaabbas03@gmail.com',
-          matchNumber: 43,
-          tickets:
-              {
-                  category: 1,
-                  quantity: 2,
-                  price:75
-              },
-          card:{
-              number:'4242424242424242',
-              expirationMonth:12,
-              expirationYear:30,
-              cvc:'123'
-          }
-      }
-      , {
-          headers: { "Accept-Encoding": "gzip,deflate,compress" }
-      })
-      .then((response) => alert(response.data))
-  }
 
   function incrementCount(count, setCount,cat,match1) {
    
@@ -360,7 +332,6 @@ pattern="[\d]{3}"
         />
 
         <button  type = "submit" className="PayButton" disabled = {!CapVerified}>Pay</button>
-        <Button onClick={e=>TestClick()}>Post</Button>
 
       </div>
       </Form>
