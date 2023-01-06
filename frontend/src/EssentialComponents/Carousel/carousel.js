@@ -3,6 +3,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import Caro3 from './caro1.jpg';
 import Caro1 from './caro2.jpg'
 import Caro2 from './caro3.jpg'
+import './caro.css';
+
 function MainCarousel() {
  return(
     <div className='carousel'>
@@ -14,8 +16,8 @@ function MainCarousel() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h5>Exclusive Tickets</h5>
-          <p>Selling Quick</p>
+          <h5 className='hea'>Exclusive Tickets</h5>
+          <p className='hea'>Selling Quick</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -25,8 +27,8 @@ function MainCarousel() {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h5>Once in a Lifetime Opportunity</h5>
-          <p>
+          <h5 className='hea'>Once in a Lifetime Opportunity</h5>
+          <p className='hea'>
            The Legends' Last World Cup!!</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -37,8 +39,8 @@ function MainCarousel() {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <h5>Don't Miss</h5>
-          <p>
+          <h5 className='hea'>Don't Miss</h5>
+          <p className='hea'>
            The Legends' Last World Cup!!</p>
           <p>
           </p>
