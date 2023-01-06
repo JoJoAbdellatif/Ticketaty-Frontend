@@ -36,7 +36,7 @@ export default function Search() {
                     <div>
                        
                         <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder=" Search" />
-                        <Button class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>                 
+                        <Button  className= 'searchButton'class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>                 
                         </div>
 
                         <div class="buttons">
