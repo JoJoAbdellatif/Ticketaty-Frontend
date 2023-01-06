@@ -66,7 +66,7 @@ export default function BookNow() {
     }
 
     setValidated(true);
-      pay(event);
+    pay(event);
 
     
     
@@ -101,7 +101,7 @@ export default function BookNow() {
 
   alert('Your Order is being processed')
 
-  const url = "https://ticketaty-reservations.vercel.app/api/reservation";
+  const url = "http://localhost:5000/api/reservation";
   axios.post(url ,
     {
       email: email,
@@ -120,7 +120,7 @@ export default function BookNow() {
       }
     }
     )
-    .then((response) => alert(response.data))
+    .then((response) => window.assign.location('http://localhost:3000/Confirmed'))
 
   }
 
