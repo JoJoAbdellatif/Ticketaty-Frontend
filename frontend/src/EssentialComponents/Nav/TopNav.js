@@ -23,8 +23,8 @@ function TopNav() {
             <Nav.Link href="/Search">Search</Nav.Link>
             <NavDropdown title="More" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Contact Us</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                About Us
+              <NavDropdown.Item href="/findMyTickets">
+                Find My Tickets
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Other Apps</NavDropdown.Item>
              

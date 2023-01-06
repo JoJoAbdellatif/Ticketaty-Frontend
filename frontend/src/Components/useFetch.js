@@ -21,7 +21,7 @@ const useFetch = (url) => {
 
             })
             .catch(err => console.log(err))   
-            }, 500);;
+            }, 500);
         return () => {
             isRendered = false;
         };

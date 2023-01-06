@@ -1,9 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ShowCards from './InfoCards/ShowCards';
 import Search from './search/Search'
 import BookNow from './bookNow/bookNow';
+import SearhMail from './search/SearchMail';
+
+
+import PurchasesCard from "./InfoCards/PurchasesCard";
+
 import Home from './Home'
 import {AnimatePresence} from 'framer-motion'
 import AllMatches from "./InfoCards/AllMatches";
@@ -20,6 +24,12 @@ return(
     </Route>
     <Route exact path="/search" element={<Search />}>
     </Route>
+    <Route exact path="/findMyTickets" element={<SearhMail />}>
+    </Route>
+
+<Route exact path= "/Test" element={<PurchasesCard />}>
+</Route>
+
 </Routes>
 </AnimatePresence>
 )
