@@ -97,7 +97,6 @@ export default function BookNow() {
   }
 
 
-  alert('Your Order is being processed')
 
   const url = "https://ticketaty-reservations.vercel.app/api/reservation";
   axios.post(url ,
@@ -119,7 +118,7 @@ export default function BookNow() {
     }
     )
     .then((response) => alert(response.data))
-
+    alert('Your Order is being processed')
   }
 
 
