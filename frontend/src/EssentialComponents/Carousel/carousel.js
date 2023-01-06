@@ -25,9 +25,9 @@ function MainCarousel() {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h5>Once in a lifetime Opertunity</h5>
+          <h5>Once in a Lifetime Opportunity</h5>
           <p>
-           The Legends' last world cup!!</p>
+           The Legends' Last World Cup!!</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -38,6 +38,8 @@ function MainCarousel() {
         />
         <Carousel.Caption>
           <h5>Don't Miss</h5>
+          <p>
+           The Legends' Last World Cup!!</p>
           <p>
           </p>
         </Carousel.Caption>
