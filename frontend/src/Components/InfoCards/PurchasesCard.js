@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.scss";
-import { useState } from "react";
-import Button from 'react-bootstrap/Button';
+
 
 
 function PurchasesCard({card}) {
+   
     return(
         <div className="container0">
         <div className="container2">
@@ -14,12 +14,12 @@ function PurchasesCard({card}) {
             <div className="row">
                 
                 <div className="col">
-                    <h5 className="card-title">Match Number:  </h5>
+                    <h5 className="card-title">Match Number: {card.matchNumber}</h5>
                     </div>
                     
                     <div className="col">
                    
-                    <h5 className="card-title align-right">Category:  </h5>
+                    <h5 className="card-title align-right">Category: {card.category} </h5>
                     </div>
                     </div>
 
@@ -30,12 +30,12 @@ function PurchasesCard({card}) {
 
                     <div className="row">
                     <div className="col">
-                    <h5 className="card-title">Quantity:  </h5>
+                    <h5 className="card-title">Quantity: {card.quantity}</h5>
                     </div>
                     
                     <div className="col align-right">
 
-                    <h5 className="card-title">Price:  </h5>
+                    <h5 className="card-title">Price: {card.price}</h5>
                     </div>
                     </div>
                     </div>
