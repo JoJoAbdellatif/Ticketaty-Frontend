@@ -127,6 +127,8 @@ export default function BookNow() {
     })
     .catch((error) => {
       alert('Oops!! Something went wrong')
+      navigate('/Error')
+
     })
     navigate('/Confirmed')
     alert('Your order is being proccesed')
