@@ -28,7 +28,6 @@ export default function SearchMail() {
   }
   
   return(
-<<<<<<< HEAD
         <div>
           <form onSubmit={handleSubmit} >  
             <div className='searchArea'>   
@@ -51,36 +50,6 @@ export default function SearchMail() {
             ))}
                 
       </div>
-=======
-    <div>
-    <form onSubmit={handleSubmit} >  
-        
-              <div className="input-group input-group-lg">
-              <div className='searchArea'>
-              <div>
-                 
-                  <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder=" Email To Find" />
-                  <Button  className= 'searchButton'class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search </Button>                 
-                  </div>
-
-                  <div class="buttons">
-                    
-
-
-</div>
-
-
-              </div>
-              </div> 
-
-
-
-          </form>
-      
-
-          
-</div>
->>>>>>> 6b065fb24f53da620c6bad3763ef085c0e26f357
  
     )
     }
