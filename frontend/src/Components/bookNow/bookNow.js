@@ -59,67 +59,68 @@ export default function BookNow() {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit =  (event) => {
-    const form = event.currentTarget;
+    const form = event.currentTarget; 
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
-
-
-    if(CapVerified===false){
-        alert('Please verify you are not a robot')
-        return
-    }
-    if(quan1===0 && quan2===0 && quan3===0){
-        alert('Please select at least one ticket')
-        return
-    }
-    if(quan1>0){
-      cats = 1
-      price = price1
-      quan = quan1
-
-    }
-    if(quan2>0){
-      cats = 2
-      price = price2
-      quan = quan2
-    }
-    if(quan3>0){
-      cats = 3
-      price = price3
-      quan = quan3
-    }
-
-
-    alert('Your Order is being processed')
-
-    const url = "https://ticketaty-reservations.vercel.app/api/reservation";
-    axios.post(url ,
-      {
-        email: email,
-        matchNumber: tas.matchNumber ,
-        tickets:
-            {
-                category: cats,
-                quantity: quan,
-                price:price
-            },
-        card:{
-            number:cardNumber,
-            expirationMonth:parseInt(cardMonthexp),
-            expirationYear:parseInt(cardYearexp),
-            cvc: cardCvc
-        }
-      }
-      )
-      .then((response) => alert(response.data))
-  
-  
+    pay(event);
     
   };
+
+  function pay(e){
+    if(CapVerified===false){
+      alert('Please verify you are not a robot')
+      return
+  }
+  if(quan1===0 && quan2===0 && quan3===0){
+      alert('Please select at least one ticket')
+      return
+  }
+  if(quan1>0){
+    cats = 1
+    price = price1
+    quan = quan1
+
+  }
+  if(quan2>0){
+    cats = 2
+    price = price2
+    quan = quan2
+  }
+  if(quan3>0){
+    cats = 3
+    price = price3
+    quan = quan3
+  }
+
+
+  alert('Your Order is being processed')
+
+  const url = "https://ticketaty-reservations.vercel.app/api/reservation";
+  axios.post(url ,
+    {
+      email: email,
+      matchNumber: tas.matchNumber ,
+      tickets:
+          {
+              category: cats,
+              quantity: quan,
+              price:price
+          },
+      card:{
+          number:cardNumber,
+          expirationMonth:parseInt(cardMonthexp),
+          expirationYear:parseInt(cardYearexp),
+          cvc: cardCvc
+      }
+    }
+    )
+    .then((response) => alert(response.data))
+
+  }
 
 
   function incrementCount(count, setCount,cat,match1) {
