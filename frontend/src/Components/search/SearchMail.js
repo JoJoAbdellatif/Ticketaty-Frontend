@@ -28,28 +28,36 @@ export default function SearchMail() {
   }
   
   return(
-        <div>
-          <form onSubmit={handleSubmit} >  
-            <div className='searchArea'>   
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            
-                        </div>
-                        <input type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder="Search" className="searchbar"  />
-                        
-                        <div class="input-group-append">
-                        <Button type='button' className='button input-group-append' onClick={(e)=>search(e,searched)}>Search</Button>
-                           
-                        </div>
-                    </div><br></br>
-                   
-                    </div>   
-                </form>
-                {data &&   data.map((card) => (
-              <PurchasesCard key={card._id} card={card} />
-            ))}
-                
-      </div>
+    <div>
+    <form onSubmit={handleSubmit} >  
+        
+              <div className="input-group input-group-lg">
+              <div className='searchArea'>
+              <div>
+                 
+                  <input className='searchbar' type="text" required value={searched} onChange={(e) => setSearched(e.target.value)} placeholder="Enter your email to find your ticket" />
+                  <Button  className= 'searchButton'class="button input-group-append" type="button" onClick={(e)=>search(e,searched)}>Search</Button>                 
+                  </div>
+
+                  <div class="buttons">
+                    
+
+
+</div>
+
+
+              </div>
+              </div> 
+
+
+
+          </form>
+      
+{data &&   data.map((card) => (
+        <PurchasesCard key={card._id} card={card} />
+      ))}
+          
+</div>
  
     )
     }
