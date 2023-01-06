@@ -5,7 +5,7 @@ import Search from './search/Search'
 import BookNow from './bookNow/bookNow';
 import SearhMail from './search/SearchMail';
 
-
+import Confirm from './ConfirmationPage/confirm';
 import PurchasesCard from "./InfoCards/PurchasesCard";
 
 import Home from './Home'
@@ -26,7 +26,8 @@ return(
     </Route>
     <Route exact path="/findMyTickets" element={<SearhMail />}>
     </Route>
-
+    <Route exact path= "/Confirmed" element={<Confirm />}>
+</Route>
 <Route exact path= "/Test" element={<PurchasesCard />}>
 </Route>
 

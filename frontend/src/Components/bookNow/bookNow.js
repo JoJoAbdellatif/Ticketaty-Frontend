@@ -65,10 +65,10 @@ export default function BookNow() {
       event.stopPropagation();
     }
 
-    if(validated){
+    setValidated(true);
       pay(event);
 
-    }
+    
     
   };
 
@@ -255,7 +255,7 @@ export default function BookNow() {
       Total = {Total}
       
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-
+      <div style={{padding:'30px'}}>
       <InputGroup className="mb-3" hasValidation>
         <InputGroup.Text id="inputGroup-sizing-default" >
           Email
@@ -273,7 +273,7 @@ export default function BookNow() {
             </Form.Control.Feedback>
       
       </InputGroup>
-      <div style={{padding:'30px'}}>
+      
       <InputGroup className="mb-3" hasValidation>
         <InputGroup.Text id="inputGroup-sizing-default">
           Card Number
