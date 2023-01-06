@@ -11,6 +11,7 @@ import PurchasesCard from "./InfoCards/PurchasesCard";
 import Home from './Home'
 import {AnimatePresence} from 'framer-motion'
 import AllMatches from "./InfoCards/AllMatches";
+import TooMany from "./Errors/tooManyRequestPage";
 export default function AnimatedRoutes(){
 const location = useLocation()
 return(
@@ -27,6 +28,8 @@ return(
     <Route exact path="/findMyTickets" element={<SearhMail />}>
     </Route>
     <Route exact path= "/Confirmed" element={<Confirm />}>
+</Route>
+<Route exact path= "/Error" element={<TooMany />}>
 </Route>
 <Route exact path= "/Test" element={<PurchasesCard />}>
 </Route>

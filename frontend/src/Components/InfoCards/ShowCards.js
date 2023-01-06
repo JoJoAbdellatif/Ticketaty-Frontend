@@ -4,12 +4,16 @@ import "./styles.scss";
 import {motion} from 'framer-motion'
 import axios from "axios"; 
 import useFetch from "../useFetch";
-import React, { render,useEffect,useState,useRef } from "react";
+import React, { render,useEffect,useState,useRef} from "react";
 import { Button } from "bootstrap";
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/loading.json';
+import { Navigate,useNavigate } from "react-router-dom";
+
 
 export default function ShowCards(props) {
+  const navigate = useNavigate();
+
  const page = props.page
   const [cards2, setCards2] = useState(null);
   const [isPending, setIsPending] = useState(true)
@@ -29,10 +33,16 @@ export default function ShowCards(props) {
             return null;
 
         })
-        .catch(err => console.log(err))   
+        .catch(err =>{
+          console.log(err.message)
+          navigate('/Error')
+        } 
+          
+          )   
       
     return () => {
         isRendered = false;
+
     };
 }, [page]);
 
