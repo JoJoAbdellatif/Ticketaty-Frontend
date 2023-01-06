@@ -77,23 +77,46 @@ export default function BookNow() {
         return
     }
     if(quan1>0){
-      setCats(1)
-      setQuan(quan1)
-      setPrice(price1)
+      cats = 1
+      price = price1
+      quan = quan1
+
     }
     if(quan2>0){
-      setCats(2)
-      setQuan(quan2)
-      setPrice(price2)
+      cats = 2
+      price = price2
+      quan = quan2
     }
     if(quan3>0){
-      setCats(3)
-      setQuan(quan3)
-      setPrice(price3)
+      cats = 3
+      price = price3
+      quan = quan3
     }
-    
+
 
     alert('Your Order is being processed')
+
+    const url = "http://localhost:5000/api/reservation";
+    axios.get("http://localhost:5000/api/health")
+    axios.post(url ,
+      {
+        email: email,
+        matchNumber: tas.matchNumber ,
+        tickets:
+            {
+                category: cats,
+                quantity: quan,
+                price:price
+            },
+        card:{
+            number:cardNumber,
+            expirationMonth:parseInt(cardMonthexp),
+            expirationYear:parseInt(cardYearexp),
+            cvc: cardCvc
+        }
+      }
+      )
+      .then((response) => alert(response.data))
   
   
     
@@ -183,23 +206,7 @@ export default function BookNow() {
         setTotal(Total+match1.availability.category3.price)
         setOrder(Order);
     }
-    console.log({
-      email: email,
-      matchNumber: id,
-      tickets:
-          {
-              category: cats,
-              quantity: quan,
-              price:price
-          },
-      card:{
-          number:cardNumber,
-          expirationMonth:cardMonthexp,
-          expirationYear:cardYearexp,
-          cvc: cardCvc
-      }
-  
-  })
+    
    
   }
   function decrementCount(count,setCount,cat,match1) {
