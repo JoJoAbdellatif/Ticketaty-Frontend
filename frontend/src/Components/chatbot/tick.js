@@ -2,6 +2,8 @@ import ChatBot from 'react-simple-chatbot';
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Home from '../Home';
+import axios from 'axios';
+import useFetch from '../useFetch';
 
 export default function Tick(){
     const theme = {
@@ -14,7 +16,13 @@ export default function Tick(){
         userBubbleColor: '#fff',
         userFontColor: '#4a4a4a',
       };
-
+      
+    
+    const { data: data, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/analytics')
+      let pending = data.pending
+      console.log(pending)
+      let reserved = data.reserved
+      let cancelled = data.cancelled
 
 
     return (
@@ -36,9 +44,41 @@ export default function Tick(){
             },
             {
                 id: 'response2',
-                message: 'Hi {previousValue}, nice to meet you! and happy Ticketing:)',
-                end: true,
+                message: 'Hi {previousValue}, nice to meet you! How can I help you?',
+                trigger: 'choose',
+            },
+            {
+              id: 'choose',
+              options: [
+                { value: 1, label: 'Check Analytics', trigger: 'AnalyticOptions' },
+                
+       
+              ],
+            },
+            {
+              id: 'AnalyticOptions',
+              options: [
+                { value: 1, label: 'Show me how many requests are pending', trigger: 'pending' },
+                { value: 2, label: 'Show me how many requests are reserved', trigger: 'reserved' },
+                { value: 3, label: 'Show me how many requests are canceled', trigger: 'cancelled' },
+              ],
+            },
+            {
+              id: 'pending',
+              message: pending+' requests are pending',
+              trigger : 'AnalyticOptions'
+            },
+            {
+              id: 'reserved',
+              message: reserved+' requests are reserved',
+              trigger: 'AnalyticOptions'
+            },
+            {
+              id: 'cancelled',
+              message: cancelled+' requests are cancelled',
+              trigger: 'AnalyticOptions'
             }
+
 
 
           ]
