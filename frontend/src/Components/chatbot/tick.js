@@ -5,7 +5,7 @@ import Home from '../Home';
 import axios from 'axios';
 import useFetch from '../useFetch';
 
-export default function Tick(){
+export default function Tick(props){
     const theme = {
         background: '#f5f8fb',
         headerBgColor: '#EF6C00',
@@ -17,12 +17,12 @@ export default function Tick(){
         userFontColor: '#4a4a4a',
       };
       
-    
-    const { data: data, error, isPending } = useFetch('https://ticketaty-shop.vercel.app/analytics')
+      let data = props.props
       let pending = data.pending
       console.log(pending)
+
       let reserved = data.reserved
-      let cancelled = data.cancelled
+      let cancelled = data.canceled
 
 
     return (
@@ -65,17 +65,17 @@ export default function Tick(){
             },
             {
               id: 'pending',
-              message: pending+' requests are pending',
+              message: data.pending+' requests are pending',
               trigger : 'AnalyticOptions'
             },
             {
               id: 'reserved',
-              message: reserved+' requests are reserved',
+              message: data.pending+' requests are reserved',
               trigger: 'AnalyticOptions'
             },
             {
               id: 'cancelled',
-              message: cancelled+' requests are cancelled',
+              message: data.pending+' requests are cancelled',
               trigger: 'AnalyticOptions'
             }
 
