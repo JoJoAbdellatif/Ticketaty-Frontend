@@ -70,12 +70,12 @@ export default function Tick(props){
             },
             {
               id: 'reserved',
-              message: data.pending+' requests are reserved',
+              message: reserved+' requests are reserved',
               trigger: 'AnalyticOptions'
             },
             {
               id: 'cancelled',
-              message: data.pending+' requests are cancelled',
+              message: data.canceled+' requests are cancelled',
               trigger: 'AnalyticOptions'
             }
 
