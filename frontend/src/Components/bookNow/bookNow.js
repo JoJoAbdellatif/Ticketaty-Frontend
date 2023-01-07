@@ -2,7 +2,6 @@
 import "./booknow.scss";
 import React, { render,useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import Button from 'react-bootstrap/Button';
 import ReCAPTCHA from "react-google-recaptcha";
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -12,6 +11,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
 import Form from 'react-bootstrap/Form';
+
 import Feedback from 'react-bootstrap/Feedback';
 
 
@@ -333,13 +333,10 @@ pattern="[\d]{3}"
               Please enter a valid CVC
             </Form.Control.Feedback>
       </InputGroup>
-
-
-
       </div>     
       <div className="Pay">
         <ReCAPTCHA className="Recaptcha"
-       sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+       sitekey={'6LdaitkjAAAAAIBdov0fUu00EHy_nZSIVNwKnXE2'}
          onChange={e=>onChange()} 
 
         />
