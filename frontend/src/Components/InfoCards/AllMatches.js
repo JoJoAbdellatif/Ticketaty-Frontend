@@ -36,6 +36,16 @@ return (<div>
  <Pagination.Item key={7} onClick={(event) =>paginationClicked(event)}>
    {7}
  </Pagination.Item>
+ <Pagination.Item key={8} onClick={(event) =>paginationClicked(event)}>
+   {8}
+ </Pagination.Item>
+ <Pagination.Item key={9} onClick={(event) =>paginationClicked(event)}>
+   {9}
+ </Pagination.Item>
+ <Pagination.Item key={10} onClick={(event) =>paginationClicked(event)}>
+   {10}
+ </Pagination.Item>
+ 
 </Pagination>
 </div>)
 
