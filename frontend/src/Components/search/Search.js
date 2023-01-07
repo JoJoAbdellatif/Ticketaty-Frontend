@@ -57,11 +57,12 @@ export default function Search() {
 
  
                 </form>
+                <div className='Results'>
             
       {data &&   data.map((card) => (
               <FlipCard key={card._id} card={card} />
             ))}
-                
+             </div>   
       </div>
  
     )

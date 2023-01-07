@@ -58,11 +58,12 @@ export default function SearchMail() {
 
 
           </form>
-      
+          <div className='Results'>
+
 {data &&   data.map((card) => (
         <PurchasesCard key={card._id} card={card} />
       ))}
-          
+      </div>    
 </div>
  
     )

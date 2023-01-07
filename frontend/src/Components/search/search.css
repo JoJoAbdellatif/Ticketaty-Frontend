@@ -7,6 +7,9 @@ align-items: center!important;
 justify-content: center!important;
 
 }
+.Results{
+  min-height: 100vh;
+}
 
 .searchbar{
     height:45px;
